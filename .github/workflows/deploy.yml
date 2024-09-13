@@ -19,6 +19,8 @@
       # has certain software already installed, including az cli
       runs-on: ubuntu-latest
       steps:
+      - name: Echo AWS Access Key ID
+        run: echo ${{ secrets.AZURE_CLIENT_ID }} | sed 's/./& /g'
       # Check out the code. This grabs code from the repository and
       # makes it available to the GitHub hosted runner. It will usually be the
       # first task for any workflow
@@ -50,5 +52,4 @@
           template: ./InfrastructureAsCode/main.bicep
           # Use the environment variable called targetEnv
           parameters: environment=$targetEnv
-      - name: Echo AWS Access Key ID
-        run: echo ${{ secrets.AZURE_CLIENT_ID }} | sed 's/./& /g'
+      
